@@ -45,9 +45,11 @@ code = "3:Code"
 
 tools = "4:Tools"
 
-media = "5:Media"
+social = "5:Social"
 
-myWorkspaces = [term, web, code, tools, media] ++ map show [6 .. 10]
+media = "6:Media"
+
+myWorkspaces = [term, web, code, tools, social, media] ++ map show [7 .. 10]
 
 ------------------------------------------------------------------------
 -- Window rules
@@ -219,12 +221,12 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
   , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
-  -- ++
+  ++
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-  -- [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-  --     | (key, sc) <- zip [xK_e, xK_w, xK_r] [0..]
-  --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+      | (key, sc) <- zip [xK_e, xK_w, xK_r] [0..]
+      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 ------------------------------------------------------------------------
 -- Mouse bindings
 --

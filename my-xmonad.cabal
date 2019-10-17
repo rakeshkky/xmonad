@@ -4,18 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4ed3c205f53d87ad9cc1fe2a21910de49ea7f5e5d1b5ca3aae8b7556c6787872
+-- hash: b1700e207f4110f2e6b855df4073a08a79a2e1c3f4e5aea67a7f6ad87941d0ea
 
 name:           my-xmonad
 version:        0.1.0.0
 description:    Xmonad window manger configured by and for @rakeshkky
-homepage:       https://github.com/rakeshkky/my-xmonad#readme
-bug-reports:    https://github.com/rakeshkky/my-xmonad/issues
+homepage:       https://github.com/rakeshkky/xmonad-config#readme
+bug-reports:    https://github.com/rakeshkky/xmonad-config/issues
 author:         Rakesh Emmadi
 maintainer:     rakesh.emmadi21c@gmail.com
 copyright:      2019 Emmadi Rakesh
-license:        BSD3
-license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
@@ -23,7 +21,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/rakeshkky/my-xmonad
+  location: https://github.com/rakeshkky/xmonad-config
 
 executable xmonad
   main-is: Main.hs

@@ -1,7 +1,6 @@
 name:                my-xmonad
 version:             0.1.0.0
-github:              "rakeshkky/my-xmonad"
-license:             BSD3
+github:              "rakeshkky/xmonad-config"
 author:              "Rakesh Emmadi"
 maintainer:          "rakesh.emmadi21c@gmail.com"
 copyright:           "2019 Emmadi Rakesh"
