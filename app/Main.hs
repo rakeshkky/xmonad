@@ -145,8 +145,7 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   ----------------------------------------------------------------------
   -- Custom key bindings
   --
-  -- TODO:- Bluetooth controls (GUI maybe), Lockout (screensaver), Logout
-  --        Screenshots (full and selection)
+  -- TODO:- Bluetooth controls (GUI maybe)
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- Launch gmrun
@@ -171,6 +170,15 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   , ( (modMask .|. shiftMask, xK_i)
       -- only laptop
       , spawn "xrandr --output eDP1 --auto --output HDMI1 --off")
+
+    -- Screenshots related; screenshot and screenshot-select are custom executables
+    -- Full screenshot
+  , ( (modMask .|. shiftMask .|. controlMask, xK_p)
+      , spawn "screenshot")
+    -- Select screenshot
+  , ( (modMask .|. shiftMask, xK_p)
+      , spawn "screenshot-select")
+
     -- Restart xmonad.
   , ((modMask, xK_s), restart "xmonad" True)
     --------------------------------------------------------------------
