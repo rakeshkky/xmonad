@@ -30,6 +30,8 @@ Config {
                                        , "-O"	, "<fc=#dAA520>Charging</fc> (<left>%)"
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc> (<left>%)"
+                                       -- battery low notification
+                                       , "-a"   , "notify-send -u critical 'Battery Running out!!' 'Please plug in the charger'"
                              ] 50
         , Run Volume "default" "Master" ["-t", "♫ <volume>%"] 1
         , Run StdinReader
