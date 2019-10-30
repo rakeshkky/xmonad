@@ -45,11 +45,9 @@ code = "3:Code"
 
 tools = "4:Tools"
 
-social = "5:Social"
+media = "5:Media"
 
-media = "6:Media"
-
-myWorkspaces = [term, web, code, tools, social, media] ++ map show [7 .. 10]
+myWorkspaces = [term, web, code, tools, media] ++ map show [6 .. 10]
 
 ------------------------------------------------------------------------
 -- Window rules
