@@ -15,7 +15,7 @@ Config {
                        , "<icon=/home/rakesh/Desktop/xmonad/xmobar/icons/wifi_02.xbm/> <rx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_down_03.xbm/> <tx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_up_03.xbm/>"
                        , "-H" , "200" , "-L" , "10","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"
                        ] 10
-        , Run Date "%a %b %d<icon=/home/rakesh/Desktop/xmonad/xmobar/icons/clock.xbm/>%H:%M" "date" 10
+        , Run Date "<icon=/home/rakesh/Desktop/xmonad/xmobar/icons/clock.xbm/>%H:%M %a %b %d" "date" 10
         , Run Battery        [ "--template" , "⚡ <acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
