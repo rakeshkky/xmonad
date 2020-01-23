@@ -4,7 +4,7 @@ import qualified Data.Map                     as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.IO
 import           XMonad
-import           XMonad.Actions.CycleWS       (nextScreen, shiftNextScreen)
+import           XMonad.Actions.CycleWS       (nextScreen, swapNextScreen)
 -- Utils
 import           XMonad.Config.Desktop
 -- Hooks
@@ -222,27 +222,29 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     -- Toggle the status bar gap.
     -- TODO: update this binding with avoidStruts, ((modMask, xK_b),
   , ((modMask, xK_e), nextScreen)
-  , ((modMask .|. shiftMask, xK_e), shiftNextScreen)]
-  ++
+  , ((modMask .|. shiftMask, xK_e), swapNextScreen)
+  ] ++
   -- mod-[1..9], Switch to workspace N
   -- mod-shift-[1..9], Move client to workspace N
-  [((m .|. modMask, k), windows $ f i)
-  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-  , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+  [ ((m .|. modMask, k), windows $ f i)
+    | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+  ]
 
-  ++
+  -- Avoiding the following for dual only monitor setup
+  -- ++
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_e, xK_w, xK_r] [0..]
-      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  -- [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  --     | (key, sc) <- zip [xK_e, xK_w, xK_r] [0..]
+  --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 ------------------------------------------------------------------------
 -- Mouse bindings
 --
 -- Focus rules
 -- True if your focus should follow your mouse cursor.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 myMouseBindings XConfig { XMonad.modMask = modMask } =
   M.fromList   -- mod-button1, Set the window to floating mode and move by dragging
