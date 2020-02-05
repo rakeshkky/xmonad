@@ -156,9 +156,9 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     -- Increase volume.
   , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 5%+")
     -- Descrease Brightness
-  , ((0, xF86XK_MonBrightnessDown), spawn "lxqt-config-brightness -d")
+  -- , ((0, xF86XK_MonBrightnessDown), spawn "lxqt-config-brightness -d")
     -- Increase Brightness
-  , ((0, xF86XK_MonBrightnessUp), spawn "lxqt-config-brightness -i")
+  -- , ((0, xF86XK_MonBrightnessUp), spawn "lxqt-config-brightness -i")
     -- Logout of xmonad
   , ((modMask .|. shiftMask, xK_q), spawn "lxqt-leave --logout")
     -- Monitors configuration
