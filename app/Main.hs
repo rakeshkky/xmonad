@@ -146,9 +146,9 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   -- TODO:- Bluetooth controls (GUI maybe)
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- Launch gmrun
+    -- Launch dmenu_run
     -- Use this to launch programs without a key binding.
-  , ((modMask, xK_p), spawn "gmrun")
+  , ((modMask, xK_p), spawn "dmenu_run")
     -- Mute volume.
   , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle")
     -- Decrease volume.
