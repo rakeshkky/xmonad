@@ -175,10 +175,10 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     -- Screenshots related; screenshot and screenshot-select are custom executables
     -- Full screenshot
   , ( (modMask .|. shiftMask .|. controlMask, xK_p)
-      , spawn "screenshot")
+      , spawn "gnome-screenshot")
     -- Select screenshot
   , ( (modMask .|. shiftMask, xK_p)
-      , spawn "screenshot-select")
+      , spawn "gnome-screenshot -i")
 
     -- Restart xmonad.
   , ((modMask, xK_s), restart "xmonad" True)
