@@ -69,7 +69,7 @@ myManageHook = composeAll
   , className =? "firefox" --> doShift web
   , className =? "Emacs" --> doShift code
   , className =? "Postman" --> doShift tools
-  , appName =? "Spotify" --> doShift media
+  , className =? "spotify" --> doShift media
   , appName =? "desktop_window" --> doIgnore
   , className =? "Galculator" --> doFloat
   , className =? "vlc" --> doShift media
@@ -160,7 +160,7 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     -- Increase Brightness
   -- , ((0, xF86XK_MonBrightnessUp), spawn "lxqt-config-brightness -i")
     -- Logout of xmonad
-  , ((modMask .|. shiftMask, xK_q), spawn "lxqt-leave --logout")
+  -- , ((modMask .|. shiftMask, xK_q), spawn "lxqt-leave --logout")
     -- Monitors configuration
   , ( (modMask .|. shiftMask, xK_o)
       -- only monitor
