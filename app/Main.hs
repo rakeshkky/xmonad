@@ -164,13 +164,13 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     -- Monitors configuration
   , ( (modMask .|. shiftMask, xK_o)
       -- only monitor
-      , spawn "xrandr --output HDMI1 --auto --output eDP1 --off")
+      , spawn "xrandr --output HDMI-A-0 --auto --output eDP --off")
   , ( (modMask .|. shiftMask, xK_i)
       -- only laptop
-      , spawn "xrandr --output eDP1 --auto --output HDMI1 --off")
+      , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off")
   , ( (modMask .|. shiftMask, xK_u)
       -- laptop and monitor
-      , spawn "xrandr --output HDMI1 --auto --primary --output eDP1 --auto --below HDMI1")
+      , spawn "xrandr --output HDMI-A-0 --auto --primary --output eDP --auto --left-of HDMI-A-0")
 
     -- Screenshots related; screenshot and screenshot-select are custom executables
     -- Full screenshot
