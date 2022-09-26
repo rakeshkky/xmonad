@@ -10,7 +10,7 @@ Config {
     commands = [
           Run MultiCpu ["-t","cpu<total0> <total1> <total2> <total3> <total4> <total5> <total6> <total7> <total8> <total9> <total10> <total11> <total12> <total13> <total14> <total15> ","-L","30","-H","60","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC","-w","3"] 10
         , Run Memory ["-t","mem <usedratio>%","-H","8192","-L","4096","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10
-        , Run Swap ["-t","<usedratio>%","-H","1024","-L","512","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10
+        , Run Swap ["-t","swp <usedratio>%","-H","1024","-L","512","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10
         , Run DynNetwork [ "-t"
                        , "<icon=/home/rakesh/Desktop/xmonad/xmobar/icons/wifi_02.xbm/> <rx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_down_03.xbm/> <tx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_up_03.xbm/>"
                        , "-H" , "200" , "-L" , "10","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"
@@ -38,5 +38,5 @@ Config {
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% }{ %multicpu% %memory% %dynnetwork% %default:Master% %date% %battery%"
+    template = "%StdinReader% }{ %multicpu% %memory% %swap% %dynnetwork% %default:Master% %date% %battery%"
 }
