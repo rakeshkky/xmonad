@@ -76,6 +76,7 @@ myManageHook = composeAll
   , className =? "Gimp" --> doFloat
   , appName =? "gpicview" --> doFloat
   , className =? "MPlayer" --> doFloat
+  , className =? "Pavucontrol" --> doFloat
   , className =? "Xchat" --> doShift media
   , className =? "stalonetray" --> doIgnore
   , isFullscreen --> (doF W.focusDown <+> doFullFloat)
@@ -148,7 +149,7 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- Launch dmenu_run
     -- Use this to launch programs without a key binding.
-  , ((modMask, xK_p), spawn "dmenu_run")
+  , ((modMask, xK_p), spawn "dmenu_run -l 5 -nb black -nf white -fn 'Bitstream Vera Sans Mono:size=10:bold:antialias=true'")
     -- Mute volume.
   , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle")
     -- Decrease volume.
@@ -172,7 +173,6 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
       -- laptop and monitor
       , spawn "xrandr --output eDP --auto --primary --output HDMI-A-0 --auto --right-of eDP")
 
-    -- Screenshots related; screenshot and screenshot-select are custom executables
     -- Full screenshot
   , ( (modMask .|. shiftMask .|. controlMask, xK_p)
       , spawn "gnome-screenshot")
@@ -221,8 +221,8 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   , ((modMask, xK_period), sendMessage (IncMasterN (-1)))
     -- Toggle the status bar gap.
     -- TODO: update this binding with avoidStruts, ((modMask, xK_b),
-  , ((modMask, xK_e), nextScreen)
-  , ((modMask .|. shiftMask, xK_e), swapNextScreen)
+  -- , ((modMask, xK_e), nextScreen)
+  -- , ((modMask .|. shiftMask, xK_e), swapNextScreen)
   ] ++
   -- mod-[1..9], Switch to workspace N
   -- mod-shift-[1..9], Move client to workspace N
@@ -274,7 +274,7 @@ myStartupHook = setDefaultCursor xC_left_ptr >> setWMName "LG3D"
 -- Run xmonad with all the defaults we set up.
 --
 main = do
-  xmproc <- spawnPipe "xmobar /home/rakesh/Desktop/xmonad/xmobar/config.hs"
+  xmproc <- spawnPipe "xmobar -x 1 /home/rakesh/Desktop/xmonad/xmobar/config.hs"
   xmonad
     $ defaults { logHook = dynamicLogWithPP
                    $ xmobarPP { ppOutput = hPutStrLn xmproc
