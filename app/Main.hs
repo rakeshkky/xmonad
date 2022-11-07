@@ -232,12 +232,18 @@ myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
     , (f, m) <- [(W.view, 0), (W.greedyView, shiftMask), (W.shift, controlMask)]
   ] ++
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-  -- mod-shift-{w,e,r}, Bring in workspace from physical screens 1, 2 and 2 to current screen
   -- mod-ctrl-{w,e,r}, Move client to screen 1, 2, or 3
-  [ ((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  [ ((m .|. modMask, key), runOpOnScreen sc f)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     , (f, m) <- [(W.view, 0), (W.shift, controlMask)]
+  ] ++
+  -- mod-shift-{w,e,r}, Shift to physical screens 1, 2 and 3 with current screen workspace
+  [ ((modMask .|. shiftMask, key), runOpOnScreen sc W.greedyView >> runOpOnScreen sc W.view)
+    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
   ]
+
+runOpOnScreen sc op =
+  screenWorkspace sc >>= flip whenJust (windows . op)
 
 ------------------------------------------------------------------------
 -- Mouse bindings
