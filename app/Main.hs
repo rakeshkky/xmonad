@@ -139,7 +139,7 @@ myBorderWidth = 2
 --
 myModMask = mod1Mask
 
-myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
+myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
   $
   ----------------------------------------------------------------------
   -- Custom key bindings
@@ -192,7 +192,7 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
     --  Reset the layouts on the current workspace to default.
   , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
     -- Resize viewed windows to the correct size.
-  , ((modMask, xK_n), refresh)
+  , ((modMask .|. shiftMask, xK_r), refresh)
     -- Move focus to the next window.
   , ((modMask, xK_Tab), windows W.focusDown)
     -- Move focus to the previous window.
@@ -219,22 +219,26 @@ myKeys conf @ XConfig { XMonad.modMask = modMask } = M.fromList
   , ((modMask, xK_comma), sendMessage (IncMasterN 1))
     -- Decrement the number of windows in the master area.
   , ((modMask, xK_period), sendMessage (IncMasterN (-1)))
-    -- Toggle the status bar gap.
-    -- TODO: update this binding with avoidStruts, ((modMask, xK_b),
-  -- , ((modMask, xK_e), nextScreen)
-  -- , ((modMask .|. shiftMask, xK_e), swapNextScreen)
+    -- Xinerama: Swap current screen with next screen
+  , ((modMask, xK_n), swapNextScreen)
+    -- Xinerama: Swap and view current screen in next screen
+  , ((modMask .|. shiftMask, xK_n), swapNextScreen >> nextScreen)
   ] ++
   -- mod-[1..9], Switch to workspace N
-  -- mod-shift-[1..9], Move client to workspace N
+  -- mod-shift-[1..9], Greedy switch to workspace N, useful in Xinerama to stay in current screen
+  -- mod-ctrl-[1..9], Move client to workspace N
   [ ((m .|. modMask, k), windows $ f i)
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+    , (f, m) <- [(W.view, 0), (W.greedyView, shiftMask), (W.shift, controlMask)]
   ] ++
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-  -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-  [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  -- mod-shift-{w,e,r}, Bring in workspace from physical screens 1, 2 and 2 to current screen
+  -- mod-ctrl-{w,e,r}, Move client to screen 1, 2, or 3
+  [ ((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    , (f, m) <- [(W.view, 0), (W.shift, controlMask)]
+  ]
+
 ------------------------------------------------------------------------
 -- Mouse bindings
 --
