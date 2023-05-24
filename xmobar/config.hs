@@ -1,6 +1,6 @@
 Config {
     position = Top,
-    font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
+    font = "Bitstream Vera Sans Mono Bold 10",
     bgColor = "#000000",
     fgColor = "#ffffff",
     lowerOnStart = False,
