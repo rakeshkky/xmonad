@@ -1,6 +1,6 @@
 Config {
     position = Top,
-    font = "Bitstream Vera Sans Mono Bold 10",
+    font = "Comic Sans MS Bold 11",
     bgColor = "#000000",
     fgColor = "#ffffff",
     lowerOnStart = False,
@@ -38,5 +38,5 @@ Config {
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% }{ %multicpu% %memory% %swap% %dynnetwork% %default:Master% %date% %battery%"
+    template = "} %StdinReader% { %multicpu% %memory% %swap% %dynnetwork% %default:Master% %date% %battery%"
 }

@@ -121,7 +121,7 @@ myFocusedBorderColor = "#CEFFAC"
 -- }
 -- Color of current window title in xmobar.
 -- xmobarTitleColor = "#FFB6B0"
-xmobarTitleColor = "green"
+xmobarTitleColor = "#f502f5"
 
 -- Color of current workspace in xmobar.
 xmobarCurrentWorkspaceColor = "#00FFFF" -- Cyan
