@@ -149,7 +149,7 @@ myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
   [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- Launch dmenu_run
     -- Use this to launch programs without a key binding.
-  , ((modMask, xK_p), spawn "dmenu_run -l 5 -nb black -nf white -fn 'Bitstream Vera Sans Mono:size=10:bold:antialias=true'")
+  , ((modMask, xK_p), spawn "dmenu_run -l 5 -nb black -nf white -fn 'Bitstream Vera Sans Mono:size=11:bold:antialias=true'")
     -- Mute volume.
   , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle")
     -- Decrease volume.
@@ -171,7 +171,7 @@ myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
       , spawn "xrandr --output eDP --auto --output HDMI-A-0 --off")
   , ( (modMask .|. shiftMask, xK_u)
       -- laptop and monitor
-      , spawn "xrandr --output eDP --auto --primary --output HDMI-A-0 --auto --right-of eDP")
+      , spawn "xrandr --output eDP --auto --primary --output HDMI-A-0 --auto --left-of eDP")
 
     -- Full screenshot
   , ( (modMask .|. shiftMask .|. controlMask, xK_p)
@@ -231,16 +231,31 @@ myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
     , (f, m) <- [(W.view, 0), (W.greedyView, shiftMask), (W.shift, controlMask)]
   ] ++
-  -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-  -- mod-ctrl-{w,e,r}, Move client to screen 1, 2, or 3
+  -- Dual screen setup: Left-secondory and Right-primary
+  -- xK_w - secondary (1) and xK_e - primary (0)
+  -- mod-{w,e} - Switch to Left/Right screens
+  -- mod-ctrl-{w,e} - Move client to Left/Right screen
   [ ((m .|. modMask, key), runOpOnScreen sc f)
-    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    | (key, sc) <- zip [xK_e, xK_w] [0, 1]
     , (f, m) <- [(W.view, 0), (W.shift, controlMask)]
   ] ++
-  -- mod-shift-{w,e,r}, Shift to physical screens 1, 2 and 3 with current screen workspace
+  -- mod-shift-{w,e} - Shift to physical screens Left/Right with current screen workspace
   [ ((modMask .|. shiftMask, key), runOpOnScreen sc W.greedyView >> runOpOnScreen sc W.view)
-    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    | (key, sc) <- zip [xK_e, xK_w] [0, 1]
   ]
+
+
+  -- Triple screen setup:
+  -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+  -- mod-ctrl-{w,e,r}, Move client to screen 1, 2, or 3
+  -- [ ((m .|. modMask, key), runOpOnScreen sc f)
+  --   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+  --   , (f, m) <- [(W.view, 0), (W.shift, controlMask)]
+  -- ] ++
+  -- mod-shift-{w,e,r}, Shift to physical screens 1, 2 and 3 with current screen workspace
+  -- [ ((modMask .|. shiftMask, key), runOpOnScreen sc W.greedyView >> runOpOnScreen sc W.view)
+  --   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+  -- ]
 
 runOpOnScreen sc op =
   screenWorkspace sc >>= flip whenJust (windows . op)
