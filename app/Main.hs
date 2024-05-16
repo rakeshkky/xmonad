@@ -76,7 +76,7 @@ myManageHook = composeAll
   , className =? "Gimp" --> doFloat
   , appName =? "gpicview" --> doFloat
   , className =? "MPlayer" --> doFloat
-  , className =? "Pavucontrol" --> doFloat
+  -- , className =? "Pavucontrol" --> doFloat
   , className =? "Xchat" --> doShift media
   , className =? "stalonetray" --> doIgnore
   , isFullscreen --> (doF W.focusDown <+> doFullFloat)
