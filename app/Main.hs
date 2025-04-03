@@ -63,12 +63,10 @@ myWorkspaces = [term, web, code, tools, media] ++ map show [6 .. 10]
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
+myManageHook = composeAll $
   [ className =? "Chromium" --> doShift web
   , className =? "Google-chrome" --> doShift web
   , className =? "firefox" --> doShift web
-  , className =? "Emacs" --> doShift code
-  , className =? "code-oss" --> doShift code
   , className =? "Postman" --> doShift tools
   , className =? "Spotify" --> doShift media
   , appName =? "desktop_window" --> doIgnore
@@ -82,6 +80,11 @@ myManageHook = composeAll
   , className =? "Xchat" --> doShift media
   , className =? "stalonetray" --> doIgnore
   , isFullscreen --> (doF W.focusDown <+> doFullFloat)
+  ] ++
+  [
+    -- Open code editors in the same workspace
+      (className =? c --> doShift code)
+    | c <- ["Emacs", "code-oss", "code", "Code", "cursor", "Cursor"]
   ]
 
 ------------------------------------------------------------------------
