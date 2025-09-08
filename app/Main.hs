@@ -158,9 +158,9 @@ myKeys conf@XConfig{XMonad.modMask = modMask} = M.fromList
     -- Mute volume.
   , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle")
     -- Decrease volume.
-  , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 5%-")
+  , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 1%-")
     -- Increase volume.
-  , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 5%+")
+  , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 1%+")
     -- Descrease Brightness
   -- , ((0, xF86XK_MonBrightnessDown), spawn "lxqt-config-brightness -d")
     -- Increase Brightness
