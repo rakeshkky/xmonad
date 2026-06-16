@@ -15,7 +15,7 @@ Config {
                        , "🛜 <rx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_down_03.xbm/> <tx><icon=/home/rakesh/Desktop/xmonad/xmobar/icons/net_up_03.xbm/>"
                        , "-n","#FFFFCC", "-S", "True"
                        ] 10
-        , Run Date "🕛 %H:%M %a %b %d" "date" 10
+        , Run Date "🕛 %H:%M:%S %a %b %d" "date" 10
         , Run Battery        [ "--template" , "<acstatus>"
                              , "--Low"      , "15"        -- units: %
                              , "--High"     , "80"        -- units: %

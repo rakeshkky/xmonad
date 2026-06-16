@@ -76,9 +76,11 @@ myManageHook = composeAll $
   , className =? "Gimp" --> doFloat
   , appName =? "gpicview" --> doFloat
   , className =? "MPlayer" --> doFloat
+  , className =? "Slack" --> doShift tools
   -- , className =? "Pavucontrol" --> doFloat
   , className =? "Xchat" --> doShift media
   , className =? "stalonetray" --> doIgnore
+  , className =? "PromptQL" --> doShift tools
   , isFullscreen --> (doF W.focusDown <+> doFullFloat)
   ] ++
   [
