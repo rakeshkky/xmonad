@@ -273,7 +273,7 @@ runOpOnScreen sc op =
 -- Focus rules
 -- True if your focus should follow your mouse cursor.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 myMouseBindings XConfig { XMonad.modMask = modMask } =
   M.fromList   -- mod-button1, Set the window to floating mode and move by dragging
